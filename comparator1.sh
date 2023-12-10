@@ -33,8 +33,8 @@ while [ $# -ne 0 ]; do
 	
 		# Verbose flag exists, printing additional info 
 		
-		c1=$(echo $n1 | wc -w)
-		c2=$(echo $n2 | wc -w)
+		c1=$(echo "$n1" | wc -w)
+		c2=$(echo "$n2" | wc -w)
 		echo "File 1 numbers count: ${c1}"
 		echo "File 2 numbers count: ${c2}"
 		VERBOSE=1
