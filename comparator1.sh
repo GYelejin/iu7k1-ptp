@@ -3,7 +3,6 @@
 # Getting numbers from files
 # Using awk as it is presented on Alpine
 
-# Running awk text processor code
 n1=$(
 	awk '
 	{
@@ -26,16 +25,14 @@ n2=$(
         }' "$2"
 )
 
+# Checking if verbose flag was passed
 
-echo $n1
-echo $n2
-
-# Check if verbose flag was passed
 VERBOSE=0
 while [ $# -ne 0 ]; do
 	if [ "$1" = "-v" ]; then
-		# We have the verbose flag, print numbers
-		# extracted from files
+	
+		# Verbose flag exists, printing additional info 
+		
 		c1=$(echo $n1 | wc -w)
 		c2=$(echo $n2 | wc -w)
 		echo "File 1 numbers count: ${c1}"
@@ -46,6 +43,7 @@ while [ $# -ne 0 ]; do
 done
 
 # Compare the number strings
+
 if [ "$n1" = "$n2" ]; then
 	if [ $VERBOSE -eq 1 ]; then
 		echo "Numbers match (code 0)"
