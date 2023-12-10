@@ -1,8 +1,34 @@
 #!/bin/bash
 
 # Getting numbers from files
-n1=$( grep -P -o "(?<= |^)([+-]?[0-9]+)(?= |$)" "$1" )
-n2=$( grep -P -o "(?<= |^)([+-]?[0-9]+)(?= |$)" "$2" )
+# Using awk as it is presented on Alpine
+
+# Running awk text processor code
+n1=$(
+	awk '
+	{
+	    for (i = 1; i <= NF; i++) {
+        	if ($i ~ /^[+-]?[0-9]+$/) {
+            	print $i
+        	}
+        }
+	}' "$1"
+)
+
+n2=$(
+        awk '
+        {
+            for (i = 1; i <= NF; i++) {
+                if ($i ~ /^[+-]?[0-9]+$/) {
+                print $i
+                }
+        }
+        }' "$2"
+)
+
+
+echo $n1
+echo $n2
 
 # Check if verbose flag was passed
 VERBOSE=0
