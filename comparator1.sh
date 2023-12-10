@@ -1,24 +1,8 @@
 #!/bin/bash
 
-# Function to separate numbers from other words
-function extract_numbers {
-	local numbers
-	for element in $1; do
-		# Check if word is number using regexp
-		if [[ $element =~ ^[+-]?[0-9]+$ ]]; then
-			numbers="${numbers}${element} "
-		fi
-	done
-	echo "$numbers"
-}
-
-# Getting file contents
-f1=$(cat "$1")
-f2=$(cat "$2")
-
 # Getting numbers from files
-n1=$(extract_numbers "$f1")
-n2=$(extract_numbers "$f2")
+n1=$( grep -P -o "(?<= |^)([+-]?[0-9]+)(?= |$)" "$1" )
+n2=$( grep -P -o "(?<= |^)([+-]?[0-9]+)(?= |$)" "$2" )
 
 # Check if verbose flag was passed
 VERBOSE=0
@@ -26,8 +10,10 @@ while [ $# -ne 0 ]; do
 	if [ "$1" = "-v" ]; then
 		# We have the verbose flag, print numbers
 		# extracted from files
-		echo "File 1 numbers: ${n1}"
-		echo "File 2 numbers: ${n2}"
+		c1=$(echo $n1 | wc -w)
+		c2=$(echo $n2 | wc -w)
+		echo "File 1 numbers count: ${c1}"
+		echo "File 2 numbers count: ${c2}"
 		VERBOSE=1
 	fi
 	shift
