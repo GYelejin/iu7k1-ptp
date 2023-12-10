@@ -15,7 +15,7 @@ n1=$(
 )
 
 n2=$(
-        awk '
+	awk '
         {
             for (i = 1; i <= NF; i++) {
                 if ($i ~ /^[+-]?[0-9]+$/) {
@@ -30,9 +30,9 @@ n2=$(
 VERBOSE=0
 while [ $# -ne 0 ]; do
 	if [ "$1" = "-v" ]; then
-	
-		# Verbose flag exists, printing additional info 
-		
+
+		# Verbose flag exists, printing additional info
+
 		c1=$(echo "$n1" | wc -w)
 		c2=$(echo "$n2" | wc -w)
 		echo "File 1 numbers count: ${c1}"
