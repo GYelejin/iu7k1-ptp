@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Count of tests
-count=5
+count=6
 
 i=1
 while [ $i -le $count ]; do
